@@ -14,10 +14,42 @@
 
     <script type="text/babel">
 
-        const ListaAnimali = () => {
-            const animals = [`Cane`, `Gatto`, `Pappagallo`]
+        /* import useState */
+        const {useState} = React;
 
-            return (
+   /*      function Modal({
+      title, 
+      content, 
+      show = false, 
+      onClose = () => {}
+  }){
+      return show && ReactDOM.createPortal(
+          <div className="modal-container">
+              <div className="modal">
+                  <h2>{title}</h2>
+                  <p>{content}</p>
+                  <button onClick={onClose}>Annulla</button>
+                  <button onClick={onClonfirm}>Conferma</button>
+              </div>
+          </div>,
+          document.body
+      )
+  } */
+
+        const ListaAnimali = () => {
+            const animalsChoices = ["Cane", "Gatto", "Pappagallo", "Cavallo", "Panda"];
+            const [animals, setAnimals] = useState([]);
+            
+            const AddAnimal = () => {
+              const randomIndex = Math.floor(Math.random() * animalsChoices.length);
+              const randomAnimal = animalsChoices[randomIndex];
+              setAnimals (curr => [...curr, randomAnimal]);
+            }
+
+            return (<>
+
+                <button onClick={AddAnimal}>Aggiungi animale casuale</button>
+
                 <details>
 
                     <summary>Animali</summary> 
@@ -29,7 +61,8 @@
                     </ul> 
 
                 </details>
-            )
+               
+            </>)
 
         } 
     </script>
